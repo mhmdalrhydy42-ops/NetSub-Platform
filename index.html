@@ -268,12 +268,105 @@
   </div>
 </section>
 
-  <section class="section placeholder-section" id="providers">
-    <div class="section-title">
-      <p>Service Providers</p>
-      <h2>Providers Section Coming Next</h2>
+<!-- Providers Section -->
+<section class="section providers-section" id="providers">
+  <div class="section-title">
+    <p>Service Providers</p>
+    <h2>Choose Your Internet Service Provider</h2>
+  </div>
+
+  <div class="providers-grid">
+    <!-- Provider 1 -->
+    <div class="provider-card">
+      <div class="provider-top">
+        <div class="provider-icon">
+          <i class="fa-solid fa-tower-cell"></i>
+        </div>
+
+        <span class="provider-status active">Available</span>
+      </div>
+
+      <h3>Yemen Mobile</h3>
+      <p>One of the main mobile internet providers in Yemen, suitable for daily internet subscriptions.</p>
+
+      <div class="provider-info">
+        <span><i class="fa-solid fa-phone"></i> 121</span>
+        <span><i class="fa-solid fa-location-dot"></i> Yemen</span>
+        <span><i class="fa-solid fa-star"></i> 4.8 Rating</span>
+      </div>
+
+      <button class="provider-btn" data-provider="Yemen Mobile" data-packages="Basic Plan, Standard Plan, Premium Plan">
+        View Packages
+      </button>
     </div>
-  </section>
+
+    <!-- Provider 2 -->
+    <div class="provider-card">
+      <div class="provider-top">
+        <div class="provider-icon">
+          <i class="fa-solid fa-signal"></i>
+        </div>
+
+        <span class="provider-status active">Available</span>
+      </div>
+
+      <h3>Sabafon</h3>
+      <p>Telecom provider offering mobile internet services with flexible packages for users.</p>
+
+      <div class="provider-info">
+        <span><i class="fa-solid fa-phone"></i> 211</span>
+        <span><i class="fa-solid fa-location-dot"></i> Yemen</span>
+        <span><i class="fa-solid fa-star"></i> 4.6 Rating</span>
+      </div>
+
+      <button class="provider-btn" data-provider="Sabafon" data-packages="Basic Plan, Standard Plan">
+        View Packages
+      </button>
+    </div>
+
+    <!-- Provider 3 -->
+    <div class="provider-card">
+      <div class="provider-top">
+        <div class="provider-icon">
+          <i class="fa-solid fa-network-wired"></i>
+        </div>
+
+        <span class="provider-status active">Available</span>
+      </div>
+
+      <h3>YOU</h3>
+      <p>Modern telecom provider with internet packages suitable for students, home users, and business needs.</p>
+
+      <div class="provider-info">
+        <span><i class="fa-solid fa-phone"></i> 111</span>
+        <span><i class="fa-solid fa-location-dot"></i> Yemen</span>
+        <span><i class="fa-solid fa-star"></i> 4.7 Rating</span>
+      </div>
+
+      <button class="provider-btn" data-provider="YOU" data-packages="Standard Plan, Premium Plan">
+        View Packages
+      </button>
+    </div>
+  </div>
+
+  <!-- Provider Modal -->
+  <div class="provider-modal" id="providerModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-icon">
+        <i class="fa-solid fa-tower-cell"></i>
+      </div>
+
+      <h3 id="modalProviderName">Provider Name</h3>
+      <p>Available packages for this provider:</p>
+
+      <ul id="modalPackageList"></ul>
+    </div>
+  </div>
+</section>
 
   <section class="section placeholder-section" id="subscribe">
     <div class="section-title">

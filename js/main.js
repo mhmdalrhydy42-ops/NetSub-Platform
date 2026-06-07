@@ -51,3 +51,38 @@ subscribeButtons.forEach(function (button) {
     });
   });
 });
+
+// Provider Modal
+const providerButtons = document.querySelectorAll(".provider-btn");
+const providerModal = document.getElementById("providerModal");
+const closeModal = document.getElementById("closeModal");
+const modalProviderName = document.getElementById("modalProviderName");
+const modalPackageList = document.getElementById("modalPackageList");
+
+providerButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const providerName = button.dataset.provider;
+    const packages = button.dataset.packages.split(",");
+
+    modalProviderName.textContent = providerName;
+    modalPackageList.innerHTML = "";
+
+    packages.forEach(function (packageName) {
+      const li = document.createElement("li");
+      li.innerHTML = `<i class="fa-solid fa-check"></i> ${packageName.trim()}`;
+      modalPackageList.appendChild(li);
+    });
+
+    providerModal.classList.add("show-modal");
+  });
+});
+
+closeModal.addEventListener("click", function () {
+  providerModal.classList.remove("show-modal");
+});
+
+providerModal.addEventListener("click", function (event) {
+  if (event.target === providerModal) {
+    providerModal.classList.remove("show-modal");
+  }
+});
