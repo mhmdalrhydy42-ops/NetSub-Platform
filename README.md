@@ -31,3 +31,6 @@ NetSub-Platform/
 
 ## Student
 Mohammed Hamood Ali Amer
+
+## Course Instructor / Supervisor
+Eng. Eyad Al-Shamiri
