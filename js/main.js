@@ -30,3 +30,24 @@ themeBtn.addEventListener("click", function () {
     themeIcon.classList.add("fa-moon");
   }
 });
+
+// Package Selection
+const subscribeButtons = document.querySelectorAll(".subscribe-btn");
+const toast = document.getElementById("toast");
+
+subscribeButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const selectedPackage = button.dataset.package;
+
+    toast.textContent = selectedPackage + " selected successfully!";
+    toast.classList.add("show-toast");
+
+    setTimeout(function () {
+      toast.classList.remove("show-toast");
+    }, 2500);
+
+    document.getElementById("subscribe").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});

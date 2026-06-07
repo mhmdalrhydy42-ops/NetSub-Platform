@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
 
   <!-- CSS File -->
   <link rel="stylesheet" href="css/style.css">
@@ -174,13 +174,99 @@
     </div>
   </section>
 
-  <!-- Temporary Sections -->
-  <section class="section placeholder-section" id="packages">
-    <div class="section-title">
-      <p>Internet Packages</p>
-      <h2>Packages Section Coming Next</h2>
+  <!-- Packages Section -->
+<section class="section packages-section" id="packages">
+  <div class="section-title">
+    <p>Internet Packages</p>
+    <h2>Choose The Best Package For You</h2>
+  </div>
+
+  <div class="packages-grid">
+    <!-- Basic Plan -->
+    <div class="package-card">
+      <div class="package-icon">
+        <i class="fa-solid fa-wifi"></i>
+      </div>
+
+      <h3>Basic Plan</h3>
+      <p class="package-desc">Perfect for browsing, social media, and light daily usage.</p>
+
+      <div class="package-price">
+        <span>$</span>20
+        <small>/ month</small>
+      </div>
+
+      <ul class="package-features">
+        <li><i class="fa-solid fa-check"></i> Speed: 5 Mbps</li>
+        <li><i class="fa-solid fa-check"></i> Data Limit: 100 GB</li>
+        <li><i class="fa-solid fa-check"></i> Duration: 30 Days</li>
+        <li><i class="fa-solid fa-check"></i> Payment Tracking</li>
+      </ul>
+
+      <button class="package-btn subscribe-btn" data-package="Basic Plan">
+        Subscribe Now
+      </button>
     </div>
-  </section>
+
+    <!-- Standard Plan -->
+    <div class="package-card popular">
+      <div class="popular-badge">Most Popular</div>
+
+      <div class="package-icon">
+        <i class="fa-solid fa-signal"></i>
+      </div>
+
+      <h3>Standard Plan</h3>
+      <p class="package-desc">Best choice for students, online meetings, and streaming.</p>
+
+      <div class="package-price">
+        <span>$</span>30
+        <small>/ month</small>
+      </div>
+
+      <ul class="package-features">
+        <li><i class="fa-solid fa-check"></i> Speed: 10 Mbps</li>
+        <li><i class="fa-solid fa-check"></i> Data Limit: 200 GB</li>
+        <li><i class="fa-solid fa-check"></i> Duration: 30 Days</li>
+        <li><i class="fa-solid fa-check"></i> Priority Support</li>
+      </ul>
+
+      <button class="package-btn subscribe-btn" data-package="Standard Plan">
+        Subscribe Now
+      </button>
+    </div>
+
+    <!-- Premium Plan -->
+    <div class="package-card">
+      <div class="package-icon">
+        <i class="fa-solid fa-rocket"></i>
+      </div>
+
+      <h3>Premium Plan</h3>
+      <p class="package-desc">High-speed package for gaming, business, and heavy usage.</p>
+
+      <div class="package-price">
+        <span>$</span>50
+        <small>/ month</small>
+      </div>
+
+      <ul class="package-features">
+        <li><i class="fa-solid fa-check"></i> Speed: 20 Mbps</li>
+        <li><i class="fa-solid fa-check"></i> Data Limit: 500 GB</li>
+        <li><i class="fa-solid fa-check"></i> Duration: 30 Days</li>
+        <li><i class="fa-solid fa-check"></i> Premium Support</li>
+      </ul>
+
+      <button class="package-btn subscribe-btn" data-package="Premium Plan">
+        Subscribe Now
+      </button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    Package selected successfully!
+  </div>
+</section>
 
   <section class="section placeholder-section" id="providers">
     <div class="section-title">

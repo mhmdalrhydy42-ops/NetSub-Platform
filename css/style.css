@@ -9,6 +9,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Poppins", "Cairo", sans-serif;
   background: #0f172a;
@@ -459,6 +464,172 @@ button {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Packages Section */
+.packages-section {
+  position: relative;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.package-card {
+  position: relative;
+  padding: 34px 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  transition: 0.35s;
+  overflow: hidden;
+}
+
+.package-card::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: rgba(6, 182, 212, 0.16);
+  filter: blur(55px);
+  border-radius: 50%;
+  top: -60px;
+  right: -60px;
+  opacity: 0;
+  transition: 0.35s;
+}
+
+.package-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(6, 182, 212, 0.55);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.package-card:hover::before {
+  opacity: 1;
+}
+
+.package-card.popular {
+  border: 1px solid rgba(6, 182, 212, 0.7);
+  transform: scale(1.04);
+  box-shadow: 0 24px 65px rgba(6, 182, 212, 0.14);
+}
+
+.package-card.popular:hover {
+  transform: scale(1.04) translateY(-12px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.package-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: rgba(6, 182, 212, 0.15);
+  color: #22d3ee;
+  font-size: 1.7rem;
+  margin-bottom: 22px;
+}
+
+.package-card h3 {
+  font-size: 1.55rem;
+  margin-bottom: 10px;
+}
+
+.package-desc {
+  color: #94a3b8;
+  min-height: 55px;
+  margin-bottom: 22px;
+}
+
+.package-price {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 22px;
+  color: #ffffff;
+}
+
+.package-price span {
+  font-size: 1.4rem;
+  color: #22d3ee;
+}
+
+.package-price small {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.package-features {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-bottom: 28px;
+}
+
+.package-features li {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.package-features i {
+  color: #22c55e;
+  margin-right: 8px;
+}
+
+.package-btn {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.package-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+}
+
+/* Toast Message */
+.toast {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #ffffff;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  padding: 15px 20px;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  transform: translateY(30px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.toast.show-toast {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /* Light Mode */
 body.light-mode {
   background: #f8fafc;
@@ -483,10 +654,25 @@ body.light-mode .menu-btn,
 body.light-mode .secondary-btn,
 body.light-mode .stat-card,
 body.light-mode .feature-card,
+body.light-mode .package-card,
 body.light-mode .dashboard-preview {
   background: rgba(255, 255, 255, 0.9);
   color: #0f172a;
   border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .package-price {
+  color: #0f172a;
+}
+
+body.light-mode .package-desc,
+body.light-mode .package-features li {
+  color: #475569;
+}
+
+body.light-mode .toast {
+  background: #ffffff;
+  color: #0f172a;
 }
 
 body.light-mode .preview-card {
@@ -547,9 +733,10 @@ body.light-mode .preview-card {
     justify-content: center;
   }
 
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .features-grid,
+.packages-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
 }
 
 @media (max-width: 620px) {
@@ -570,9 +757,18 @@ body.light-mode .preview-card {
   }
 
   .features-grid,
-  .preview-grid {
-    grid-template-columns: 1fr;
-  }
+.packages-grid,
+.preview-grid {
+  grid-template-columns: 1fr;
+}
+
+.package-card.popular {
+  transform: none;
+}
+
+.package-card.popular:hover {
+  transform: translateY(-12px);
+}
 
   .primary-btn,
   .secondary-btn {
