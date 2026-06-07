@@ -3,17 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NetSub Platform </title>
 
+  <title>NetSub Platform</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS File -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <h1>NetSub Platform For Mohammed</h1>
-  <p>Web Technology Final Project</p>
+  <!-- Header / Navbar -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-wifi"></i>
+        <span>NetSub</span>
+      </a>
 
-  <button id="testBtn">Click Me</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#providers">Providers</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+      </ul>
 
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeBtn" title="Change Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <a href="#subscribe" class="nav-btn">Get Started</a>
+
+        <button class="menu-btn" id="menuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-badge">
+        <i class="fa-solid fa-signal"></i>
+        Smart Internet Subscription Platform
+      </p>
+
+      <h1>
+        Manage Internet Packages
+        <span>Faster & Smarter</span>
+      </h1>
+
+      <p class="hero-description">
+        NetSub Platform helps users view internet packages, choose service providers,
+        track payment status, and manage subscriptions from one modern dashboard.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#packages" class="primary-btn">
+          Explore Packages
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="#dashboard" class="secondary-btn">
+          View Dashboard
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <h3>1200+</h3>
+          <p>Users</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>20+</h3>
+          <p>Packages</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>5+</h3>
+          <p>Providers</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="dashboard-preview">
+        <div class="preview-header">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="preview-card large">
+          <div>
+            <p>Active Subscription</p>
+            <h3>Basic Plan</h3>
+          </div>
+          <i class="fa-solid fa-wifi"></i>
+        </div>
+
+        <div class="preview-grid">
+          <div class="preview-card">
+            <i class="fa-solid fa-gauge-high"></i>
+            <p>Speed</p>
+            <h4>10 Mbps</h4>
+          </div>
+
+          <div class="preview-card">
+            <i class="fa-solid fa-calendar-days"></i>
+            <p>Days Left</p>
+            <h4>20 Days</h4>
+          </div>
+        </div>
+
+        <div class="preview-progress">
+          <div class="progress-info">
+            <span>Payment Status</span>
+            <strong>Paid</strong>
+          </div>
+          <div class="progress-bar">
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="section-title">
+      <p>Platform Features</p>
+      <h2>Everything You Need In One Place</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-box-open"></i>
+        <h3>Package Management</h3>
+        <p>View and compare internet packages by speed, price, duration, and data limit.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-tower-cell"></i>
+        <h3>Service Providers</h3>
+        <p>Browse available providers and choose the best provider for your package.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-credit-card"></i>
+        <h3>Payment Tracking</h3>
+        <p>Track payment status such as paid, unpaid, or pending in a clear dashboard.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Subscription Dashboard</h3>
+        <p>Monitor active subscriptions, remaining days, and subscription status.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Temporary Sections -->
+  <section class="section placeholder-section" id="packages">
+    <div class="section-title">
+      <p>Internet Packages</p>
+      <h2>Packages Section Coming Next</h2>
+    </div>
+  </section>
+
+  <section class="section placeholder-section" id="providers">
+    <div class="section-title">
+      <p>Service Providers</p>
+      <h2>Providers Section Coming Next</h2>
+    </div>
+  </section>
+
+  <section class="section placeholder-section" id="subscribe">
+    <div class="section-title">
+      <p>Subscription Form</p>
+      <h2>Subscribe Section Coming Next</h2>
+    </div>
+  </section>
+
+  <section class="section placeholder-section" id="dashboard">
+    <div class="section-title">
+      <p>Dashboard</p>
+      <h2>Dashboard Section Coming Next</h2>
+    </div>
+  </section>
+
+  <!-- JavaScript File -->
   <script src="js/main.js"></script>
 </body>
 </html>
