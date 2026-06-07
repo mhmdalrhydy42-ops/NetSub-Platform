@@ -368,12 +368,126 @@
   </div>
 </section>
 
-  <section class="section placeholder-section" id="subscribe">
-    <div class="section-title">
-      <p>Subscription Form</p>
-      <h2>Subscribe Section Coming Next</h2>
+  <!-- Subscribe Section -->
+<section class="section subscribe-section" id="subscribe">
+  <div class="section-title">
+    <p>Subscription Form</p>
+    <h2>Create Your Internet Subscription</h2>
+  </div>
+
+  <div class="subscribe-container">
+    <div class="subscribe-info">
+      <div class="info-icon">
+        <i class="fa-solid fa-file-signature"></i>
+      </div>
+
+      <h3>Subscribe In Simple Steps</h3>
+      <p>
+        Fill in your information, choose your provider and package,
+        then submit the form to create a subscription request.
+      </p>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <span>1</span>
+          <p>Enter your personal information</p>
+        </div>
+
+        <div class="step-item">
+          <span>2</span>
+          <p>Choose provider and package</p>
+        </div>
+
+        <div class="step-item">
+          <span>3</span>
+          <p>Submit and track your status</p>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <form class="subscription-form" id="subscriptionForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your full name">
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Example: mohammed123">
+          <small class="error-message"></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="example@email.com">
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" placeholder="777123456">
+          <small class="error-message"></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="providerSelect">Service Provider</label>
+          <select id="providerSelect">
+            <option value="">Choose provider</option>
+            <option value="Yemen Mobile">Yemen Mobile</option>
+            <option value="Sabafon">Sabafon</option>
+            <option value="YOU">YOU</option>
+          </select>
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="packageSelect">Internet Package</label>
+          <select id="packageSelect">
+            <option value="">Choose package</option>
+            <option value="Basic Plan">Basic Plan</option>
+            <option value="Standard Plan">Standard Plan</option>
+            <option value="Premium Plan">Premium Plan</option>
+          </select>
+          <small class="error-message"></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate">
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="paymentStatus">Payment Status</label>
+          <select id="paymentStatus">
+            <option value="">Choose payment status</option>
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+            <option value="unpaid">Unpaid</option>
+          </select>
+          <small class="error-message"></small>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Submit Subscription
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+
+      <div class="success-message" id="successMessage">
+        Subscription created successfully!
+      </div>
+    </form>
+  </div>
+</section>
 
   <section class="section placeholder-section" id="dashboard">
     <div class="section-title">
