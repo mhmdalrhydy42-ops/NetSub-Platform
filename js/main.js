@@ -153,6 +153,8 @@ function translatePage(lang) {
   placeholderElements.forEach(function (element) {
     element.placeholder = element.dataset[lang + "Placeholder"];
   });
+  
+refreshDynamicRowsLanguage();
 
   localStorage.setItem("language", lang);
 
@@ -277,6 +279,166 @@ if (providerModal) {
     }
   });
 }
+
+// ===============================
+// Dashboard Data & Helpers
+// ===============================
+const subscriptionsTableBody = document.getElementById("subscriptionsTableBody");
+
+function addDays(dateString, days) {
+  const date = new Date(dateString);
+  date.setDate(date.getDate() + days);
+  return date.toISOString().split("T")[0];
+}
+
+function getStatusFromPayment(paymentStatus) {
+  if (paymentStatus === "paid") {
+    return "active";
+  }
+
+  if (paymentStatus === "pending") {
+    return "pending";
+  }
+
+  return "pending";
+}
+
+function getPaymentClass(paymentStatus) {
+  if (paymentStatus === "paid") return "paid";
+  if (paymentStatus === "pending") return "pending";
+  return "unpaid";
+}
+
+function getStatusText(status) {
+  const lang = getCurrentLanguage();
+
+  const statusText = {
+    active: {
+      en: "Active",
+      ar: "نشط"
+    },
+    pending: {
+      en: "Pending",
+      ar: "قيد الانتظار"
+    },
+    expired: {
+      en: "Expired",
+      ar: "منتهي"
+    }
+  };
+
+  return statusText[status]?.[lang] || status;
+}
+
+function getPaymentText(paymentStatus) {
+  const lang = getCurrentLanguage();
+
+  const paymentText = {
+    paid: {
+      en: "Paid",
+      ar: "مدفوع"
+    },
+    pending: {
+      en: "Pending",
+      ar: "قيد الانتظار"
+    },
+    unpaid: {
+      en: "Unpaid",
+      ar: "غير مدفوع"
+    }
+  };
+
+  return paymentText[paymentStatus]?.[lang] || paymentStatus;
+}
+
+function createSubscriptionRow(subscription) {
+  const row = document.createElement("tr");
+  row.dataset.status = subscription.status;
+  row.dataset.dynamic = "true";
+
+  row.innerHTML = `
+    <td>${subscription.username}</td>
+    <td>${translatePackageName(subscription.packageName)}</td>
+    <td>${translateProviderName(subscription.providerName)}</td>
+    <td>${subscription.startDate}</td>
+    <td>${subscription.endDate}</td>
+    <td>
+      <span class="status-badge ${subscription.status}">
+        ${getStatusText(subscription.status)}
+      </span>
+    </td>
+    <td>
+      <span class="payment-badge ${getPaymentClass(subscription.paymentStatus)}">
+        ${getPaymentText(subscription.paymentStatus)}
+      </span>
+    </td>
+  `;
+
+  return row;
+}
+
+function getSavedSubscriptions() {
+  return JSON.parse(localStorage.getItem("subscriptions")) || [];
+}
+
+function saveSubscription(subscription) {
+  const subscriptions = getSavedSubscriptions();
+  subscriptions.push(subscription);
+  localStorage.setItem("subscriptions", JSON.stringify(subscriptions));
+}
+
+function loadSavedSubscriptions() {
+  if (!subscriptionsTableBody) return;
+
+  const savedSubscriptions = getSavedSubscriptions();
+
+  savedSubscriptions.forEach(function (subscription) {
+    const row = createSubscriptionRow(subscription);
+    subscriptionsTableBody.appendChild(row);
+  });
+}
+
+function refreshDynamicRowsLanguage() {
+  const dynamicRows = document.querySelectorAll('tr[data-dynamic="true"]');
+  const savedSubscriptions = getSavedSubscriptions();
+
+  dynamicRows.forEach(function (row, index) {
+    const subscription = savedSubscriptions[index];
+
+    if (subscription) {
+      const newRow = createSubscriptionRow(subscription);
+      row.replaceWith(newRow);
+    }
+  });
+}
+
+function updateDashboardStats() {
+  const allRows = document.querySelectorAll("#subscriptionsTableBody tr");
+
+  const totalUsers = document.querySelector(".dashboard-stat-card:nth-child(1) h3");
+  const activeSubscriptions = document.querySelector(".dashboard-stat-card:nth-child(2) h3");
+  const pendingPayments = document.querySelector(".dashboard-stat-card:nth-child(3) h3");
+  const expiredSubscriptions = document.querySelector(".dashboard-stat-card:nth-child(4) h3");
+
+  let activeCount = 0;
+  let pendingCount = 0;
+  let expiredCount = 0;
+
+  allRows.forEach(function (row) {
+    if (row.dataset.status === "active") activeCount++;
+    if (row.dataset.status === "pending") pendingCount++;
+    if (row.dataset.status === "expired") expiredCount++;
+  });
+
+  if (totalUsers) totalUsers.textContent = allRows.length;
+  if (activeSubscriptions) activeSubscriptions.textContent = activeCount;
+  if (pendingPayments) pendingPayments.textContent = pendingCount;
+  if (expiredSubscriptions) expiredSubscriptions.textContent = expiredCount;
+}
+
+// Load saved subscriptions when page opens
+loadSavedSubscriptions();
+updateDashboardStats();
 
 // ===============================
 // Subscription Form Validation
@@ -440,6 +602,24 @@ if (subscriptionForm) {
     if (isValid) {
       const selectedPackage = packageSelectInput.value;
       const selectedProvider = providerSelect.value;
+      const selectedPaymentStatus = paymentStatus.value;
+      const subscriptionStatus = getStatusFromPayment(selectedPaymentStatus);
+
+      const newSubscription = {
+        username: username.value.trim(),
+        packageName: selectedPackage,
+        providerName: selectedProvider,
+        startDate: startDate.value,
+        endDate: addDays(startDate.value, 30),
+        status: subscriptionStatus,
+        paymentStatus: selectedPaymentStatus
+      };
+
+      const row = createSubscriptionRow(newSubscription);
+      subscriptionsTableBody.appendChild(row);
+
+      saveSubscription(newSubscription);
+      updateDashboardStats();
 
       if (successMessage) {
         successMessage.textContent = isArabic()
@@ -450,9 +630,21 @@ if (subscriptionForm) {
       }
 
       showToast(
-        "Subscription submitted successfully!",
-        "تم إرسال الاشتراك بنجاح!"
+        "Subscription submitted successfully and added to dashboard!",
+        "تم إرسال الاشتراك وإضافته إلى لوحة التحكم بنجاح!"
       );
+
+      subscriptionForm.reset();
+
+      setTimeout(function () {
+        const dashboardSection = document.getElementById("dashboard");
+
+        if (dashboardSection) {
+          dashboardSection.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      }, 800);
     }
   });
 }
@@ -460,8 +652,21 @@ if (subscriptionForm) {
 // ===============================
 // Dashboard Table Filters
 // ===============================
+function applyDashboardFilter(filterValue) {
+  const allRows = document.querySelectorAll("#subscriptionsTableBody tr");
+
+  allRows.forEach(function (row) {
+    const rowStatus = row.dataset.status;
+
+    if (filterValue === "all" || filterValue === rowStatus) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+
 const filterButtons = document.querySelectorAll(".filter-btn");
-const subscriptionRows = document.querySelectorAll("#subscriptionsTableBody tr");
 
 filterButtons.forEach(function (button) {
   button.addEventListener("click", function () {
@@ -473,14 +678,6 @@ filterButtons.forEach(function (button) {
 
     button.classList.add("active");
 
-    subscriptionRows.forEach(function (row) {
-      const rowStatus = row.dataset.status;
-
-      if (filterValue === "all" || filterValue === rowStatus) {
-        row.style.display = "";
-      } else {
-        row.style.display = "none";
-      }
-    });
+    applyDashboardFilter(filterValue);
   });
 });
