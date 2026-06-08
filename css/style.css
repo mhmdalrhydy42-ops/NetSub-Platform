@@ -570,14 +570,22 @@ body.light-mode .language-menu button {
 
 .popular-badge {
   position: absolute;
-  top: 22px;
+  top: 14px;
   right: 22px;
-  padding: 7px 13px;
+  padding: 8px 14px;
   border-radius: 30px;
   background: linear-gradient(135deg, #2563eb, #06b6d4);
   color: #ffffff;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1;
+  z-index: 2;
+}
+
+html[dir="rtl"] .popular-badge {
+  top: 14px;
+  right: auto;
+  left: 22px;
 }
 
 .package-icon {
