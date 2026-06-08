@@ -1231,6 +1231,70 @@ html[dir="rtl"] .popular-badge {
   color: #ef4444;
 }
 
+/* Admin Tools */
+.admin-tools {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin: 30px 0;
+}
+
+.admin-tool-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  transition: 0.3s;
+}
+
+.admin-tool-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.admin-tool-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(6, 182, 212, 0.15);
+  color: #22d3ee;
+  font-size: 1.45rem;
+  margin-bottom: 16px;
+}
+
+.admin-tool-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.admin-tool-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  min-height: 58px;
+  margin-bottom: 18px;
+}
+
+.admin-tool-btn {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(6, 182, 212, 0.14);
+  color: #67e8f9;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-tool-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
 /* Footer Section */
 .footer {
   width: 100%;
@@ -1404,6 +1468,7 @@ body.light-mode .package-card,
 body.light-mode .provider-card,
 body.light-mode .subscribe-info,
 body.light-mode .subscription-form,
+body.light-mode .admin-tool-card,
 body.light-mode .dashboard-stat-card,
 body.light-mode .dashboard-table-box
 body.light-mode .modal-content,
@@ -1412,6 +1477,10 @@ body.light-mode .dashboard-preview {
   color: #0f172a;
   border-color: rgba(15, 23, 42, 0.08);
 }
+body.light-mode .admin-tool-card p {
+  color: #475569;
+}
+
 body.light-mode .dashboard-stat-card p,
 body.light-mode .table-header p,
 body.light-mode .subscriptions-table td {
@@ -1478,6 +1547,10 @@ body.light-mode .preview-card {
 
 /* Responsive Design */
 @media (max-width: 980px) {
+
+  .admin-tools {
+  grid-template-columns: repeat(2, 1fr);
+}
 
   .footer-container {
   grid-template-columns: repeat(2, 1fr);
@@ -1555,6 +1628,14 @@ body.light-mode .preview-card {
 }
 
 @media (max-width: 620px) {
+
+  .admin-tools {
+  grid-template-columns: 1fr;
+}
+
+.admin-tool-card p {
+  min-height: auto;
+}
 
 .footer-container {
   grid-template-columns: 1fr;

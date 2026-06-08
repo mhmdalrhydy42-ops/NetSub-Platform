@@ -421,6 +421,7 @@ function updateDashboardStats() {
   const allRows = document.querySelectorAll("#subscriptionsTableBody tr");
 
   const totalUsers = document.querySelector(".dashboard-stat-card:nth-child(1) h3");
+  const heroSubscriptionsCount = document.getElementById("heroSubscriptionsCount");
   const activeSubscriptions = document.querySelector(".dashboard-stat-card:nth-child(2) h3");
   const pendingPayments = document.querySelector(".dashboard-stat-card:nth-child(3) h3");
   const expiredSubscriptions = document.querySelector(".dashboard-stat-card:nth-child(4) h3");
@@ -436,6 +437,7 @@ function updateDashboardStats() {
   });
 
   if (totalUsers) totalUsers.textContent = allRows.length;
+  if (heroSubscriptionsCount) heroSubscriptionsCount.textContent = allRows.length + "+";
   if (activeSubscriptions) activeSubscriptions.textContent = activeCount;
   if (pendingPayments) pendingPayments.textContent = pendingCount;
   if (expiredSubscriptions) expiredSubscriptions.textContent = expiredCount;
@@ -719,4 +721,22 @@ document.addEventListener("click", function (event) {
     "Subscription deleted successfully!",
     "تم حذف الاشتراك بنجاح!"
   );
+});
+
+// ===============================
+// Admin Tools Interaction
+// ===============================
+const adminToolButtons = document.querySelectorAll(".admin-tool-btn");
+
+adminToolButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const featureName = isArabic()
+      ? button.dataset.featureAr
+      : button.dataset.featureEn;
+
+    showToast(
+      featureName + " is available for administrators.",
+      "ميزة " + featureName + " مخصصة للمدير."
+    );
+  });
 });
