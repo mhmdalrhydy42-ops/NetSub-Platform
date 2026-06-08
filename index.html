@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,21 +27,31 @@
         <span>NetSub</span>
       </a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#providers">Providers</a></li>
-        <li><a href="#subscribe">Subscribe</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
-      </ul>
+     <ul class="nav-links" id="navLinks">
+  <li><a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a></li>
+  <li><a href="#features" data-en="Features" data-ar="المميزات">Features</a></li>
+  <li><a href="#packages" data-en="Packages" data-ar="الباقات">Packages</a></li>
+  <li><a href="#providers" data-en="Providers" data-ar="المزودون">Providers</a></li>
+  <li><a href="#subscribe" data-en="Subscribe" data-ar="الاشتراك">Subscribe</a></li>
+  <li><a href="#dashboard" data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</a></li>
+</ul>
 
       <div class="nav-actions">
+        <div class="language-dropdown">
+  <button class="theme-btn" id="langBtn" title="Change Language">
+    <i class="fa-solid fa-globe"></i>
+  </button>
+
+  <div class="language-menu" id="languageMenu">
+    <button data-lang="en">English</button>
+    <button data-lang="ar">العربية</button>
+  </div>
+</div>
         <button class="theme-btn" id="themeBtn" title="Change Theme">
           <i class="fa-solid fa-moon"></i>
         </button>
 
-        <a href="#subscribe" class="nav-btn">Get Started</a>
+        <a href="#subscribe" class="nav-btn" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
 
         <button class="menu-btn" id="menuBtn">
           <i class="fa-solid fa-bars"></i>
@@ -489,12 +499,129 @@
   </div>
 </section>
 
-  <section class="section placeholder-section" id="dashboard">
-    <div class="section-title">
-      <p>Dashboard</p>
-      <h2>Dashboard Section Coming Next</h2>
+  <!-- Dashboard Section -->
+<section class="section dashboard-section" id="dashboard">
+  <div class="section-title">
+    <p>Subscription Dashboard</p>
+    <h2>Monitor Subscriptions Status</h2>
+  </div>
+
+  <div class="dashboard-stats">
+    <div class="dashboard-stat-card">
+      <div class="dashboard-stat-icon">
+        <i class="fa-solid fa-users"></i>
+      </div>
+      <div>
+        <h3>245</h3>
+        <p>Total Users</p>
+      </div>
     </div>
-  </section>
+
+    <div class="dashboard-stat-card">
+      <div class="dashboard-stat-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <h3>180</h3>
+        <p>Active Subscriptions</p>
+      </div>
+    </div>
+
+    <div class="dashboard-stat-card">
+      <div class="dashboard-stat-icon warning">
+        <i class="fa-solid fa-clock"></i>
+      </div>
+      <div>
+        <h3>32</h3>
+        <p>Pending Payments</p>
+      </div>
+    </div>
+
+    <div class="dashboard-stat-card">
+      <div class="dashboard-stat-icon danger">
+        <i class="fa-solid fa-calendar-xmark"></i>
+      </div>
+      <div>
+        <h3>12</h3>
+        <p>Expired Subscriptions</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-table-box">
+    <div class="table-header">
+      <div>
+        <h3>Recent Subscriptions</h3>
+        <p>Filter and track user subscriptions</p>
+      </div>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="expired">Expired</button>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="subscriptions-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Package</th>
+            <th>Provider</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+
+        <tbody id="subscriptionsTableBody">
+          <tr data-status="active">
+            <td>mohammed123</td>
+            <td>Basic Plan</td>
+            <td>Yemen Mobile</td>
+            <td>2026-07-01</td>
+            <td>2026-08-01</td>
+            <td><span class="status-badge active">Active</span></td>
+            <td><span class="payment-badge paid">Paid</span></td>
+          </tr>
+
+          <tr data-status="pending">
+            <td>ali2026</td>
+            <td>Standard Plan</td>
+            <td>Sabafon</td>
+            <td>2026-06-20</td>
+            <td>2026-07-20</td>
+            <td><span class="status-badge pending">Pending</span></td>
+            <td><span class="payment-badge pending">Pending</span></td>
+          </tr>
+
+          <tr data-status="active">
+            <td>sara_net</td>
+            <td>Premium Plan</td>
+            <td>YOU</td>
+            <td>2026-06-15</td>
+            <td>2026-07-15</td>
+            <td><span class="status-badge active">Active</span></td>
+            <td><span class="payment-badge paid">Paid</span></td>
+          </tr>
+
+          <tr data-status="expired">
+            <td>ahmed99</td>
+            <td>Basic Plan</td>
+            <td>Yemen Mobile</td>
+            <td>2026-05-01</td>
+            <td>2026-06-01</td>
+            <td><span class="status-badge expired">Expired</span></td>
+            <td><span class="payment-badge unpaid">Unpaid</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
   <!-- JavaScript File -->
   <script src="js/main.js"></script>

@@ -15,17 +15,50 @@ links.forEach(function (link) {
   });
 });
 
+// Navbar Active Link On Scroll
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", function () {
+  let currentSection = "";
+
+  sections.forEach(function (section) {
+    const sectionTop = section.offsetTop - 140;
+    const sectionHeight = section.offsetHeight;
+
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  navItems.forEach(function (link) {
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === "#" + currentSection) {
+      link.classList.add("active");
+    }
+  });
+});
+
 // Dark / Light Mode
 const themeBtn = document.getElementById("themeBtn");
 const themeIcon = themeBtn.querySelector("i");
+
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+  themeIcon.classList.remove("fa-moon");
+  themeIcon.classList.add("fa-sun");
+}
 
 themeBtn.addEventListener("click", function () {
   document.body.classList.toggle("light-mode");
 
   if (document.body.classList.contains("light-mode")) {
+    localStorage.setItem("theme", "light");
     themeIcon.classList.remove("fa-moon");
     themeIcon.classList.add("fa-sun");
   } else {
+    localStorage.setItem("theme", "dark");
     themeIcon.classList.remove("fa-sun");
     themeIcon.classList.add("fa-moon");
   }
@@ -206,4 +239,60 @@ subscriptionForm.addEventListener("submit", function (event) {
       toast.classList.remove("show-toast");
     }, 2500);
   }
+});
+
+// Language Dropdown
+const langBtn = document.getElementById("langBtn");
+const languageMenu = document.getElementById("languageMenu");
+const languageOptions = document.querySelectorAll(".language-menu button");
+
+langBtn.addEventListener("click", function (event) {
+  event.stopPropagation();
+  languageMenu.classList.toggle("show-language-menu");
+});
+
+languageOptions.forEach(function (option) {
+  option.addEventListener("click", function () {
+    const selectedLang = option.dataset.lang;
+
+    if (selectedLang === "ar") {
+      document.documentElement.lang = "ar";
+      document.documentElement.dir = "rtl";
+    } else {
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
+    }
+
+    languageMenu.classList.remove("show-language-menu");
+  });
+});
+
+document.addEventListener("click", function () {
+  languageMenu.classList.remove("show-language-menu");
+});
+
+// Dashboard Table Filters
+const filterButtons = document.querySelectorAll(".filter-btn");
+const subscriptionRows = document.querySelectorAll("#subscriptionsTableBody tr");
+
+filterButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const filterValue = button.dataset.filter;
+
+    filterButtons.forEach(function (btn) {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    subscriptionRows.forEach(function (row) {
+      const rowStatus = row.dataset.status;
+
+      if (filterValue === "all" || filterValue === rowStatus) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
 });
