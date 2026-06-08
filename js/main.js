@@ -153,7 +153,7 @@ function translatePage(lang) {
   placeholderElements.forEach(function (element) {
     element.placeholder = element.dataset[lang + "Placeholder"];
   });
-  
+
 refreshDynamicRowsLanguage();
 
   localStorage.setItem("language", lang);
@@ -372,6 +372,11 @@ function createSubscriptionRow(subscription) {
         ${getPaymentText(subscription.paymentStatus)}
       </span>
     </td>
+    <td>
+  <button class="delete-row-btn">
+    <i class="fa-solid fa-trash"></i>
+  </button>
+</td>
   `;
 
   return row;
@@ -680,4 +685,38 @@ filterButtons.forEach(function (button) {
 
     applyDashboardFilter(filterValue);
   });
+});
+
+// Delete Subscription Row With Confirmation
+document.addEventListener("click", function (event) {
+  const deleteButton = event.target.closest(".delete-row-btn");
+
+  if (!deleteButton) return;
+
+  const confirmMessage = isArabic()
+    ? "هل أنت متأكد أنك تريد حذف هذا الاشتراك؟"
+    : "Are you sure you want to delete this subscription?";
+
+  const isConfirmed = confirm(confirmMessage);
+
+  if (!isConfirmed) return;
+
+  const row = deleteButton.closest("tr");
+
+  if (row.dataset.dynamic === "true") {
+    const dynamicRows = Array.from(document.querySelectorAll('tr[data-dynamic="true"]'));
+    const rowIndex = dynamicRows.indexOf(row);
+
+    const savedSubscriptions = getSavedSubscriptions();
+    savedSubscriptions.splice(rowIndex, 1);
+    localStorage.setItem("subscriptions", JSON.stringify(savedSubscriptions));
+  }
+
+  row.remove();
+  updateDashboardStats();
+
+  showToast(
+    "Subscription deleted successfully!",
+    "تم حذف الاشتراك بنجاح!"
+  );
 });

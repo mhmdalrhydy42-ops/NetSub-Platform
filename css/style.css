@@ -582,6 +582,22 @@ body.light-mode .language-menu button {
   z-index: 2;
 }
 
+.delete-row-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-row-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
 html[dir="rtl"] .popular-badge {
   top: 14px;
   right: auto;
